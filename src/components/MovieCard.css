@@ -1,0 +1,31 @@
+.movie-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: #222;
+    padding: 12px;
+    margin: 12px;
+    border-radius: 10px;
+    width: 220px; /* ✅ 더 좁게 */
+    color: white;
+    flex-shrink: 0;
+  }
+  
+  .movie-image {
+    width: 100%;
+    border-radius: 8px;
+    object-fit: cover;
+  }
+  
+  .movie-title {
+    font-size: 1rem;
+    margin: 8px 0 4px;
+    text-align: center;
+  }
+  
+  .movie-overview {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    text-align: center;
+  }
+  
