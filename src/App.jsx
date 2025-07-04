@@ -3,6 +3,7 @@ import { fetchMovies } from './utils/api';
 import MovieCard from './components/MovieCard';
 import './styles/App.css';
 
+
 function App() {
   const [searchQuery, setSearchQuery] = useState('');
   const [movies, setMovies] = useState([]);
@@ -51,9 +52,12 @@ function App() {
     window.history.replaceState({}, '', window.location.pathname);
   };
 
+  const likedMovies = movies.filter((m) => liked[m.id]);
+  const bookmarkedMovies = movies.filter((m) => bookmarked[m.id]);
+
   return (
     <div className="app">
-      <h1>🎬 영화 검색 앱</h1>
+      <h1>🎬 픽플릭 (PickFlick)</h1>
       <div className="search-box">
         <input
           type="text"
@@ -64,18 +68,62 @@ function App() {
         <button onClick={handleReset}>초기화</button>
       </div>
 
-      <div className="movie-list">
-        {movies.length === 0 && searchQuery && <p>검색 결과가 없습니다.</p>}
-        {movies.map((movie) => (
-          <MovieCard
-            key={movie.id}
-            movie={movie}
-            liked={liked[movie.id]}
-            bookmarked={bookmarked[movie.id]}
-            onLike={() => toggleLike(movie.id)}
-            onBookmark={() => toggleBookmark(movie.id)}
-          />
-        ))}
+      <div className="layout">
+        {/* 좌측: 좋아요 리스트 (제목만) */}
+        <div className="likes-sidebar">
+          <h2>❤️ 좋아요</h2>
+          {likedMovies.length === 0 && <p>없음</p>}
+          <ul className="likes-list">
+            {likedMovies.map((movie) => (
+              <li key={movie.id} className="likes-item">
+                <img
+                  src={
+                    movie.poster_path
+                      ? `https://image.tmdb.org/t/p/w92/${movie.poster_path}`
+                      : 'https://via.placeholder.com/50x75?text=No+Image'
+                  }
+                  alt={movie.title}
+                />
+                <span>{movie.title}</span>
+              </li>
+            ))}
+          </ul>
+
+        </div>
+
+        {/* 중앙: 영화 카드 리스트 */}
+        <div className="movie-list">
+          {movies.length === 0 && searchQuery && <p>검색 결과가 없습니다.</p>}
+          {movies.map((movie) => (
+            <MovieCard
+              key={movie.id}
+              movie={movie}
+              liked={liked[movie.id]}
+              bookmarked={bookmarked[movie.id]}
+              onLike={() => toggleLike(movie.id)}
+              onBookmark={() => toggleBookmark(movie.id)}
+            />
+          ))}
+        </div>
+
+        {/* 우측: 즐겨찾기 리스트 */}
+        <div className="favorites-sidebar">
+          <h2>⭐ 즐겨찾기</h2>
+          {bookmarkedMovies.length === 0 && <p>없음</p>}
+          {bookmarkedMovies.map((movie) => (
+            <div key={movie.id} className="favorite-item">
+              <img
+                src={
+                  movie.poster_path
+                    ? `https://image.tmdb.org/t/p/w200/${movie.poster_path}`
+                    : 'https://via.placeholder.com/100x150?text=No+Image'
+                }
+                alt={movie.title}
+              />
+              <p>{movie.title}</p>
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );

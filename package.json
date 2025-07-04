@@ -2,17 +2,19 @@
     "name": "react-movie-app",
     "version": "1.0.0",
     "scripts": {
-        "dev": "vite",
-        "build": "vite build",
-        "preview": "vite preview",
-        "test": "echo \"Error: no test specified\" && exit 1"
+      "dev": "vite",
+      "build": "vite build",
+      "preview": "vite preview",
+      "deploy": "vercel --prod",           // ✅ 추가된 부분
+      "test": "echo \"Error: no test specified\" && exit 1"
     },
     "devDependencies": {
-        "@vitejs/plugin-react": "^4.6.0",
-        "vite": "^7.0.2"
+      "@vitejs/plugin-react": "^4.6.0",
+      "vite": "^7.0.2"
     },
     "dependencies": {
-        "react": "^19.1.0",
-        "react-dom": "^19.1.0"
+      "react": "^19.1.0",
+      "react-dom": "^19.1.0"
     }
-}
+  }
+  

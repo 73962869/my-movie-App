@@ -4,9 +4,9 @@
     align-items: center;
     background-color: #222;
     padding: 12px;
-    margin: 12px;
+    margin: 20px;
     border-radius: 10px;
-    width: 220px; /* ✅ 더 좁게 */
+    width: 220px;
     color: white;
     flex-shrink: 0;
   }
@@ -27,5 +27,37 @@
     font-size: 0.9rem;
     line-height: 1.4;
     text-align: center;
+  }
+  
+  .movie-actions {
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    margin-top: 10px;
+  }
+  
+  .movie-actions button {
+    background-color: #444;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.85rem;
+    transition: background-color 0.2s;
+  }
+  
+  .movie-actions button:hover {
+    background-color: #666;
+  }
+  
+  .movie-title a {
+    color: white;
+    text-decoration: none;
+  }
+  
+  .movie-title a:hover {
+    text-decoration: underline;
+    color: #00ccff;
   }
   

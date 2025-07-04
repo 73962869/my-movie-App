@@ -6,3 +6,9 @@ export async function fetchMovies(query) {
   const data = await res.json();
   return data.results;
 }
+
+export async function fetchPopularMovies() {
+  const res = await fetch(`${BASE_URL}/movie/popular?api_key=${API_KEY}&language=ko-KR&page=1`);
+  const data = await res.json();
+  return data.results;
+}
